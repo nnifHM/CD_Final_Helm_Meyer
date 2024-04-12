@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 public static class FileHandler
 {
     private static string filePath;
-    private readonly static string envVar = "GAME_SETUP_PATH";
+    private readonly static string envVar = "C:/Users/cc221011.FH/Downloads/CD-GroupAJ/SokobanGame/Setup.json";
 
     static FileHandler()
     {
@@ -16,9 +16,10 @@ public static class FileHandler
 
     private static void Initialize()
     {
-        if(Environment.GetEnvironmentVariable(envVar) != null){
+        /*if(Environment.GetEnvironmentVariable(envVar) != null){
             filePath = Environment.GetEnvironmentVariable(envVar);
-        };
+        };*/
+        filePath = envVar;
     }
 
     public static dynamic ReadJson()
