@@ -23,6 +23,18 @@
       "PosY": 2
     },
     {
+      "Type": 4,
+      "Color": 5,
+      "PosX": 7,
+      "PosY": 2
+    },
+    {
+      "Type": 2,
+      "Color": 6,
+      "PosX": 7,
+      "PosY": 5
+    },
+    {
       "Type": 1,
       "Color": 3,
       "PosX": 0,
