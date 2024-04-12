@@ -1,4 +1,3 @@
 **/bin/
 **/obj/
-**/libs/Handler/FileHandler.cs
-**/libs
+/libs/Handler/FileHandler.cs
