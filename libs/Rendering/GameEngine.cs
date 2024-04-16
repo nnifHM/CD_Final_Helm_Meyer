@@ -66,7 +66,7 @@ public sealed class GameEngine
     public void Render() {
 
         //Clean the map
-        Console.Clear();
+        //Console.Clear();
 
         map.Initialize();
 

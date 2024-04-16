@@ -3,6 +3,7 @@ namespace libs;
 public sealed class Player : GameObject {
 
     private static Player? _instance;
+    private Collision collision;
     public static Player Instance {
         get{
             if(_instance == null)
@@ -18,10 +19,14 @@ public sealed class Player : GameObject {
         Color = ConsoleColor.DarkYellow;
     }
 
-    public override void Move(int dx, int dy) {
+    public override void Move(int dx, int dy)
+    {
+        collision = Collision.Instance;
+        if (collision.canMove(this.PosX + dx , this.PosY + dy)){
         SetPrevPosX(this.PosX);
         SetPrevPosY(this.PosY);
         this.PosX += dx;
         this.PosY += dy;
+        }
     }
 }

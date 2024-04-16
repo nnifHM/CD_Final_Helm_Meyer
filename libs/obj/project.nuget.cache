@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "rd0eupbb1O8WlxZwaQLpkuZddpxlJNwr6CMzZGVwSWjnORNZ/phRh9yQVLcH/pGP5icoeQMe4XUTpRKH0GcSvQ==",
+  "dgSpecHash": "A5WcPokbsuNPthBLV8FLke6gIT/0GWlXFg0211HOqAMjpQlTpyL4h1dS3yWvM4hB8u0m+MnZGoeHVgh69T6K2Q==",
   "success": true,
-  "projectFilePath": "/Users/finn/Documents/STUDIUM_BCC/4_Semester/C_Sharp_Developement/Projects/Sokoban_Group/SokobanGame/libs/libs.csproj",
+  "projectFilePath": "C:\\Users\\Jonas\\RiderProjects\\SokobanGame\\libs\\libs.csproj",
   "expectedPackageFiles": [
-    "/Users/finn/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\Jonas\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
 }

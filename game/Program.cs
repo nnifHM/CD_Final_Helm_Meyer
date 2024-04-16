@@ -8,6 +8,7 @@ class Program
         Console.CursorVisible = false;
         var engine = GameEngine.Instance;
         var inputHandler = InputHandler.Instance;
+        var collision = Collision.Instance;
         //var player = Player.Instance;
         
         engine.Setup();

@@ -52,6 +52,10 @@ public class Map {
     public GameObject Get(int x, int y){
         return GameObjectLayer[x, y];
     }
+    
+    public char GetChar(int x, int y){
+        return RepresentationalLayer[x, y];
+    }
 
     public void Set(GameObject gameObject){
         int posY = gameObject.PosY;
