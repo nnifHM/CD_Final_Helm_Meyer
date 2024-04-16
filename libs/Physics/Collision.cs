@@ -52,10 +52,12 @@ public class Collision
             {
                 return false;
             }
+            
             else
             {
                 firstObj.Move(dx, dy);
                 return true;
+                
             }
 
         } else

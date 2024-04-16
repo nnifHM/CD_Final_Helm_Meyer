@@ -8,6 +8,7 @@ public class Map {
     private int _mapWidth;
     private int _mapHeight;
 
+
     public Map () {
         _mapWidth = 30;
         _mapHeight = 8;
@@ -21,6 +22,8 @@ public class Map {
         RepresentationalLayer = new char[_mapHeight, _mapWidth];
         GameObjectLayer = new GameObject[_mapHeight, _mapWidth];
     }
+
+    
 
     public void Initialize()
     {
@@ -62,18 +65,15 @@ public class Map {
         int posX = gameObject.PosX;
         int prevPosY = gameObject.GetPrevPosY();
         int prevPosX = gameObject.GetPrevPosX();
-        
-        if (prevPosX > 0  && prevPosX < _mapWidth &&
-                prevPosY > 0 && prevPosY < _mapHeight)
-        {
-            GameObjectLayer[prevPosY, prevPosX] = new Floor();
+
+        // Ensure the previous position is cleared if it's still holding a reference to the moving object
+        if (GameObjectLayer[prevPosY, prevPosX] == gameObject) {
+            GameObjectLayer[prevPosY, prevPosX] = null;  // Set to null or a new Floor as needed
         }
 
-        if (posX >= 0 && posX < _mapWidth &&
-                posY >= 0 && posY < _mapHeight)
-        {
-            GameObjectLayer[posY, posX] = gameObject;
-            RepresentationalLayer[gameObject.PosY, gameObject.PosX] = gameObject.CharRepresentation;
-        }
+        // Place the object in the new position
+        GameObjectLayer[posY, posX] = gameObject;
+        RepresentationalLayer[gameObject.PosY, gameObject.PosX] = gameObject.CharRepresentation;
     }
+
 }

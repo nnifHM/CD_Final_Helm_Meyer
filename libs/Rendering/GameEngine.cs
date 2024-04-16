@@ -9,118 +9,185 @@ using Newtonsoft.Json;
 public sealed class GameEngine
 {
     private static GameEngine? _instance;
-    private IGameObjectFactory gameObjectFactory;
+        private IGameObjectFactory gameObjectFactory;
 
-    public static GameEngine Instance {
-        get{
-            if(_instance == null)
+        public static GameEngine Instance
+        {
+            get
             {
-                _instance = new GameEngine();
+                if (_instance == null)
+                {
+                    _instance = new GameEngine();
+                }
+                return _instance;
             }
-            return _instance;
-        }
-    }
-
-    private GameEngine() {
-        //INIT PROPS HERE IF NEEDED
-        gameObjectFactory = new GameObjectFactory();
-    }
-
-    private GameObject? _focusedObject;
-
-    private Map map = new Map();
-
-    private List<GameObject> gameObjects = new List<GameObject>();
-
-
-    public Map GetMap() {
-        return map;
-    }
-
-    public GameObject GetFocusedObject(){
-        return _focusedObject;
-    }
-
-
-    public void Setup(){
-
-        //Added for proper display of game characters
-        Console.OutputEncoding = System.Text.Encoding.UTF8;
-
-        dynamic gameData = FileHandler.ReadJson();
-
-        map.MapWidth = gameData.map.width;
-        map.MapHeight = gameData.map.height;
-
-        foreach (var gameObject in gameData.gameObjects)
-        {
-            AddGameObject(CreateGameObject(gameObject));
         }
 
-        _focusedObject = gameObjects.OfType<Player>().First();
-
-    }
-    public void SetFocused(GameObject gameObject){
-        _focusedObject = gameObject;
-    }
-
-    public void Render() {
-
-        //Clean the map
-        Console.Clear();
-
-        map.Initialize();
-
-        PlaceGameObjects();
-
-        //Render the map
-        for (int i = 0; i < map.MapHeight; i++)
+        private GameEngine()
         {
-            for (int j = 0; j < map.MapWidth; j++)
+            gameObjectFactory = new GameObjectFactory();
+            gameObjects = new List<GameObject>();
+            stateHistory = new Stack<List<GameObject>>();
+            map = new Map();
+            playerHistory = new Stack<(int, int)>();  // Stack to store player positions for undo functionality
+        }
+
+        private GameObject? _focusedObject;
+        private List<GameObject> gameObjects;
+        private Map map;
+        private Stack<List<GameObject>> stateHistory;  // Stack to store map states for undo functionality
+
+        private Stack<(int, int)> playerHistory;
+
+        public void SaveCurrentState()
+        {
+            List<GameObject> gameObjectsCopy = new List<GameObject>();
+            foreach (GameObject gameObject in gameObjects)
             {
-                DrawObject(map.Get(i, j));
+                if (gameObject.Type != GameObjectType.Player)
+                {
+                    gameObjectsCopy.Add((GameObject)gameObject.Clone());
+                }
             }
-            Console.WriteLine();
+            foreach (GameObject gameObject in gameObjects)
+            {
+                Console.WriteLine(gameObject.Type + " " + gameObject.PosX + " " + gameObject.PosY + " " + gameObject.CharRepresentation + " " + gameObject.Color);
+            }
+            stateHistory.Push(gameObjectsCopy);
+            playerHistory.Push((_focusedObject.PosX, _focusedObject.PosY));
+            
         }
-    }
 
-    // Method to create GameObject using the factory from clients
-    public GameObject CreateGameObject(dynamic obj)
-    {
-        return gameObjectFactory.CreateGameObject(obj);
-    }
+        
+        public void UndoMove()
+        {
+            Console.WriteLine("UndoMove" + stateHistory.Count);
+            if (stateHistory.Count > 0)
+            {
+                var gameObjectsCopy = new List<GameObject>(gameObjects); // Create a copy of gameObjects
 
-    public void AddGameObject(GameObject gameObject){
-        foreach(GameObject player in gameObjects){
-            if(player.Type == 0 && gameObject.Type == 0){
-                return;
+                foreach (GameObject gameObject in gameObjectsCopy)
+                {
+                    if (gameObject.Type != GameObjectType.Player)
+                    {
+                        gameObjects.Remove(gameObject); // Remove elements from the original list
+                    }
+                }
+                
+                // Add the gameObjects from the previous state to the gameObjects list
+                foreach (GameObject gameObject in stateHistory.Pop())
+                {
+                    gameObjects.Add(gameObject);
+                }
+
+                // Restore the player position from playerHistory
+                (int x, int y) = playerHistory.Pop();
+                _focusedObject.PosX = x;
+                _focusedObject.PosY = y;
+                Render(); 
+            }
+            else
+            {
+                Console.WriteLine("No more moves to undo.");
             }
         }
-        gameObjects.Add(gameObject);
-    }
 
-    private void PlaceGameObjects(){
 
-        gameObjects.ForEach(delegate(GameObject obj)
+        public bool CanUndo()
         {
-            map.Set(obj);
-        });
-    }
+            return stateHistory.Count > 0;
+        }
 
-    private void DrawObject(GameObject gameObject){
-
-        Console.ResetColor();
-
-        if(gameObject != null)
+        public Map GetMap()
         {
-            Console.ForegroundColor = gameObject.Color;
-            Console.Write(gameObject.CharRepresentation);
+            return map;
         }
-        else{
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.Write(' ');
+
+        public GameObject GetFocusedObject()
+        {
+            return _focusedObject;
         }
-    }
+
+        public void Setup()
+        {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+            dynamic gameData = FileHandler.ReadJson();  // Load game data
+            map.MapWidth = gameData.map.width;
+            map.MapHeight = gameData.map.height;
+
+            foreach (var gameObject in gameData.gameObjects)
+            {
+                AddGameObject(CreateGameObject(gameObject));
+            }
+
+            _focusedObject = gameObjects.OfType<Player>().FirstOrDefault();  // Ensure there is a player
+        }
+
+        public void SetFocused(GameObject gameObject)
+        {
+            _focusedObject = gameObject;
+        }
+
+        public void Render()
+        {
+            Console.Clear();
+            
+
+            
+                map.Initialize();
+                PlaceGameObjects();
+            
+            
+            for (int i = 0; i < map.MapHeight; i++)
+            {
+                for (int j = 0; j < map.MapWidth; j++)
+                {
+                    DrawObject(map.Get(i, j));
+                }
+                Console.WriteLine();
+            }
+        }
+
+        
+
+
+        public GameObject CreateGameObject(dynamic obj)
+        {
+            return gameObjectFactory.CreateGameObject(obj);
+        }
+
+        public void AddGameObject(GameObject gameObject)
+        {
+            if (!gameObjects.Any(p => p.Type == GameObjectType.Player && gameObject.Type == GameObjectType.Player))
+            {
+                gameObjects.Add(gameObject);
+            }
+        }
+
+        private void PlaceGameObjects()
+        {
+            foreach (GameObject obj in gameObjects)
+            {
+                map.Set(obj);
+            }
+        }
+
+        private void DrawObject(GameObject gameObject)
+        {
+            Console.ResetColor();
+            if (gameObject != null)
+            {
+                Console.ForegroundColor = gameObject.Color;
+                Console.Write(gameObject.CharRepresentation);
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.Write(' ');
+            }
+        }
+
 
     public bool CheckWinCondition() {
         List<GameObject> goals = new List<GameObject>();

@@ -23,6 +23,7 @@ public sealed class Player : GameObject {
     {
         collision = Collision.Instance;
         if (collision.canMove(this.PosX , this.PosY , dx, dy)){
+            
         SetPrevPosX(this.PosX);
         SetPrevPosY(this.PosY);
         this.PosX += dx;
