@@ -17,6 +17,12 @@
       "PosY": 1
     },
     {
+      "Type": 0,
+      "Color": 5,
+      "PosX": 3,
+      "PosY": 1
+    },
+    {
       "Type": 2,
       "Color": 6,
       "PosX": 2,

@@ -36,3 +36,16 @@ C:/Users/A200002851/OneDrive - Deutsche Telekom AG/Projects/lesson07/libs/obj/De
 /Users/arjun/Documents/SokobanGame/libs/obj/Debug/net8.0/refint/libs.dll
 /Users/arjun/Documents/SokobanGame/libs/obj/Debug/net8.0/libs.pdb
 /Users/arjun/Documents/SokobanGame/libs/obj/Debug/net8.0/ref/libs.dll
+D:\Schule\FH\4.Semester\CD\Soko\SokobanGame\libs\obj\Debug\net8.0\libs.csproj.AssemblyReference.cache
+D:\Schule\FH\4.Semester\CD\Soko\SokobanGame\libs\obj\Debug\net8.0\libs.GeneratedMSBuildEditorConfig.editorconfig
+D:\Schule\FH\4.Semester\CD\Soko\SokobanGame\libs\obj\Debug\net8.0\libs.AssemblyInfoInputs.cache
+D:\Schule\FH\4.Semester\CD\Soko\SokobanGame\libs\obj\Debug\net8.0\libs.AssemblyInfo.cs
+D:\Schule\FH\4.Semester\CD\Soko\SokobanGame\libs\obj\Debug\net8.0\libs.csproj.CoreCompileInputs.cache
+D:\Schule\FH\4.Semester\CD\Soko\SokobanGame\libs\obj\Debug\net8.0\libs.sourcelink.json
+D:\Schule\FH\4.Semester\CD\Soko\SokobanGame\libs\obj\Debug\net8.0\libs.dll
+D:\Schule\FH\4.Semester\CD\Soko\SokobanGame\libs\obj\Debug\net8.0\refint\libs.dll
+D:\Schule\FH\4.Semester\CD\Soko\SokobanGame\libs\obj\Debug\net8.0\libs.pdb
+D:\Schule\FH\4.Semester\CD\Soko\SokobanGame\libs\bin\Debug\net8.0\libs.deps.json
+D:\Schule\FH\4.Semester\CD\Soko\SokobanGame\libs\bin\Debug\net8.0\libs.dll
+D:\Schule\FH\4.Semester\CD\Soko\SokobanGame\libs\bin\Debug\net8.0\libs.pdb
+D:\Schule\FH\4.Semester\CD\Soko\SokobanGame\libs\obj\Debug\net8.0\ref\libs.dll

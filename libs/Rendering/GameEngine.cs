@@ -59,6 +59,9 @@ public sealed class GameEngine
         _focusedObject = gameObjects.OfType<Player>().First();
 
     }
+    public void SetFocused(GameObject gameObject){
+        _focusedObject = gameObject;
+    }
 
     public void Render() {
         
@@ -87,7 +90,13 @@ public sealed class GameEngine
     }
 
     public void AddGameObject(GameObject gameObject){
+        foreach(GameObject player in gameObjects){
+            if(player.Type == 0 && gameObject.Type == 0){
+                return;
+            }
+        }
         gameObjects.Add(gameObject);
+        
     }
 
     private void PlaceGameObjects(){

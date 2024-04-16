@@ -8,8 +8,10 @@ class Program
         Console.CursorVisible = false;
         var engine = GameEngine.Instance;
         var inputHandler = InputHandler.Instance;
+        //var player = Player.Instance;
         
         engine.Setup();
+        //engine.SetFocused(player);
 
         // Main game loop
         while (true)
