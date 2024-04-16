@@ -47,7 +47,7 @@ public sealed class GameEngine
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
         dynamic gameData = FileHandler.ReadJson();
-        
+
         map.MapWidth = gameData.map.width;
         map.MapHeight = gameData.map.height;
 
@@ -55,7 +55,7 @@ public sealed class GameEngine
         {
             AddGameObject(CreateGameObject(gameObject));
         }
-        
+
         _focusedObject = gameObjects.OfType<Player>().First();
 
     }
@@ -64,7 +64,7 @@ public sealed class GameEngine
     }
 
     public void Render() {
-        
+
         //Clean the map
         Console.Clear();
 
@@ -82,7 +82,7 @@ public sealed class GameEngine
             Console.WriteLine();
         }
     }
-    
+
     // Method to create GameObject using the factory from clients
     public GameObject CreateGameObject(dynamic obj)
     {
@@ -96,11 +96,10 @@ public sealed class GameEngine
             }
         }
         gameObjects.Add(gameObject);
-        
     }
 
     private void PlaceGameObjects(){
-        
+
         gameObjects.ForEach(delegate(GameObject obj)
         {
             map.Set(obj);
@@ -108,7 +107,7 @@ public sealed class GameEngine
     }
 
     private void DrawObject(GameObject gameObject){
-        
+
         Console.ResetColor();
 
         if(gameObject != null)

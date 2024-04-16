@@ -17,4 +17,11 @@ public sealed class Player : GameObject {
         CharRepresentation = '☻';
         Color = ConsoleColor.DarkYellow;
     }
+
+    public override void Move(int dx, int dy) {
+        SetPrevPosX(this.PosX);
+        SetPrevPosY(this.PosY);
+        this.PosX += dx;
+        this.PosY += dy;
+    }
 }

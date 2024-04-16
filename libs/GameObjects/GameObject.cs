@@ -7,7 +7,7 @@ public class GameObject : IGameObject, IMovement
 
     private int _posX;
     private int _posY;
-    
+
     private int _prevPosX;
     private int _prevPosY;
 
@@ -57,12 +57,20 @@ public class GameObject : IGameObject, IMovement
     public int GetPrevPosY() {
         return _prevPosY;
     }
-    
+
     public int GetPrevPosX() {
         return _prevPosX;
     }
 
-    public void Move(int dx, int dy) {
+    public void SetPrevPosX(int pX){
+        _prevPosX = pX;
+    }
+
+    public void SetPrevPosY(int pY){
+        _prevPosY = pY;
+    }
+
+    public virtual void Move(int dx, int dy) {
         _prevPosX = _posX;
         _prevPosY = _posY;
         _posX += dx;
