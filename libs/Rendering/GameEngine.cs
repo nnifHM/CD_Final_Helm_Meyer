@@ -41,6 +41,7 @@ public sealed class GameEngine
         return _focusedObject;
     }
 
+    
     public void Setup(){
 
         //Added for proper display of game characters

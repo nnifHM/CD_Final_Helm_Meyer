@@ -45,7 +45,7 @@ public class Collision
         {
             return false;
         } else if
-            ((int)firstObj.Type == 2) // if next object is box, check for next object is obstacle or box. else move
+            ((int)firstObj.Type == 2) // if next object is box, check for next object is obstacle or box. else move the first object
         {
             GameObject secondObj = map.Get(nextY + dy, nextX + dx);
             if ((int)secondObj.Type == 1 || (int)secondObj.Type == 2)
@@ -54,7 +54,7 @@ public class Collision
             }
             else
             {
-                secondObj.Move(dx, dy);
+                firstObj.Move(dx, dy);
                 return true;
             }
 
