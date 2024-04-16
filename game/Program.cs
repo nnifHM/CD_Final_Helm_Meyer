@@ -1,7 +1,7 @@
 ﻿using libs;
 
 class Program
-{    
+{
     static void Main(string[] args)
     {
         //Setup
@@ -10,7 +10,7 @@ class Program
         var inputHandler = InputHandler.Instance;
         var collision = Collision.Instance;
         //var player = Player.Instance;
-        
+
         engine.Setup();
         //engine.SetFocused(player);
 
@@ -22,6 +22,14 @@ class Program
             // Handle keyboard input
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
             inputHandler.Handle(keyInfo);
+
+            // After a move is made
+            if (engine.CheckWinCondition()) {
+                Console.Clear();
+                Console.WriteLine("Congratulations! You Win!");
+                //Console.ReadKey(true);
+                Environment.Exit(0); // Exit the game after displaying the win message.
+            }
         }
     }
 }

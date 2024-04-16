@@ -41,7 +41,7 @@ public sealed class GameEngine
         return _focusedObject;
     }
 
-    
+
     public void Setup(){
 
         //Added for proper display of game characters
@@ -67,7 +67,7 @@ public sealed class GameEngine
     public void Render() {
 
         //Clean the map
-        //Console.Clear();
+        Console.Clear();
 
         map.Initialize();
 
@@ -120,5 +120,36 @@ public sealed class GameEngine
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.Write(' ');
         }
+    }
+
+    public bool CheckWinCondition() {
+        List<GameObject> goals = new List<GameObject>();
+        List<GameObject> boxes = new List<GameObject>();
+
+
+        foreach (GameObject gameObject in gameObjects) {
+            if (gameObject.Type == GameObjectType.Goal) {
+                goals.Add(gameObject);
+            }
+            else if (gameObject.Type == GameObjectType.Box) {
+                boxes.Add(gameObject);
+            }
+        }
+
+        // Check if each goal is covered by at least one box
+        foreach (GameObject goal in goals) {
+            bool goalIsCovered = false;
+            foreach (GameObject box in boxes) {
+                if (goal.PosX == box.PosX && goal.PosY == box.PosY) {
+                    goalIsCovered = true;
+                    break; // Stop checking other boxes once a covering box is found
+                }
+            }
+            if (!goalIsCovered) {
+                return false; // Return false as soon as an uncovered goal is found
+            }
+        }
+
+        return true; // Return true if all goals are covered
     }
 }
