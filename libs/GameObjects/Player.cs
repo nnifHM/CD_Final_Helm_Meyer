@@ -22,7 +22,7 @@ public sealed class Player : GameObject {
     public override void Move(int dx, int dy)
     {
         collision = Collision.Instance;
-        if (collision.canMove(this.PosX + dx , this.PosY + dy)){
+        if (collision.canMove(this.PosX , this.PosY , dx, dy)){
         SetPrevPosX(this.PosX);
         SetPrevPosY(this.PosY);
         this.PosX += dx;

@@ -19,11 +19,16 @@ public class Collision
         engine = GameEngine.Instance;
     }
 
-    public bool canMove(int x, int y)
+    public bool canMove(int x, int y, int dx, int dy)
     {
+        int nextX = x + dx;
+        int nextY = y + dy;
+        
         Map map = engine.GetMap();
+        GameObject firstObj = map.Get(nextY, nextX);
+        
+        /* DEBUG SHIT
         char lolchar = map.GetChar(y, x);
-        GameObject obj = map.Get(y, x);
         Console.WriteLine("char: ");
         Console.WriteLine(lolchar);
         
@@ -32,11 +37,28 @@ public class Collision
         Console.WriteLine(x.ToString());
         Console.WriteLine("Y: ");
         Console.WriteLine(y.ToString());
-        if ((int)obj.Type == 1)
+        
+        */
+        
+        
+        if ((int)firstObj.Type == 1) // if next object is obstacle, Player cant move
         {
             return false;
-        }
-        else
+        } else if
+            ((int)firstObj.Type == 2) // if next object is box, check for next object is obstacle or box. else move
+        {
+            GameObject secondObj = map.Get(nextY + dy, nextX + dx);
+            if ((int)secondObj.Type == 1 || (int)secondObj.Type == 2)
+            {
+                return false;
+            }
+            else
+            {
+                secondObj.Move(dx, dy);
+                return true;
+            }
+
+        } else
         {
             return true;
         }
