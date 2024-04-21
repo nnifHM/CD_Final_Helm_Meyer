@@ -73,19 +73,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/finn/.nuget/packages/": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/finn/Documents/STUDIUM_BCC/4_Semester/C_Sharp_Developement/Projects/Sokoban_Group/SokobanGame/game/game.csproj",
+      "projectUniqueName": "D:\\Schule\\FH\\4.Semester\\CD\\Soko\\SokobanGame\\game\\game.csproj",
       "projectName": "game",
-      "projectPath": "/Users/finn/Documents/STUDIUM_BCC/4_Semester/C_Sharp_Developement/Projects/Sokoban_Group/SokobanGame/game/game.csproj",
-      "packagesPath": "/Users/finn/.nuget/packages/",
-      "outputPath": "/Users/finn/Documents/STUDIUM_BCC/4_Semester/C_Sharp_Developement/Projects/Sokoban_Group/SokobanGame/game/obj/",
+      "projectPath": "D:\\Schule\\FH\\4.Semester\\CD\\Soko\\SokobanGame\\game\\game.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "D:\\Schule\\FH\\4.Semester\\CD\\Soko\\SokobanGame\\game\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/finn/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -97,8 +97,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/finn/Documents/STUDIUM_BCC/4_Semester/C_Sharp_Developement/Projects/Sokoban_Group/SokobanGame/libs/libs.csproj": {
-              "projectPath": "/Users/finn/Documents/STUDIUM_BCC/4_Semester/C_Sharp_Developement/Projects/Sokoban_Group/SokobanGame/libs/libs.csproj"
+            "D:\\Schule\\FH\\4.Semester\\CD\\Soko\\SokobanGame\\libs\\libs.csproj": {
+              "projectPath": "D:\\Schule\\FH\\4.Semester\\CD\\Soko\\SokobanGame\\libs\\libs.csproj"
             }
           }
         }
@@ -133,7 +133,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

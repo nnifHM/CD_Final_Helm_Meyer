@@ -32,6 +32,14 @@ public sealed class GameEngine
             playerHistory = new Stack<(int, int)>();  // Stack to store player positions for undo functionality
         }
 
+        public void Clear() {
+            gameObjectFactory = new GameObjectFactory();
+            gameObjects = new List<GameObject>();
+            stateHistory = new Stack<List<GameObject>>();
+            map = new Map();
+            playerHistory = new Stack<(int, int)>();  // Stack to store player positions for undo functionality
+        }
+
         private GameObject? _focusedObject;
         private List<GameObject> gameObjects;
         private Map map;
@@ -110,6 +118,7 @@ public sealed class GameEngine
 
         public void Setup()
         {
+            Clear();
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             dynamic gameData = FileHandler.ReadJson();  // Load game data

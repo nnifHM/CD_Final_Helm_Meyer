@@ -25,10 +25,17 @@ class Program
 
             // After a move is made
             if (engine.CheckWinCondition()) {
+                
+               
                 Console.Clear();
-                Console.WriteLine("Congratulations! You Win!");
+                //Console.WriteLine("Congratulations! You Win!");
+                FileHandler.nextLevel();
+                
+                engine.Setup();
+                //Set Patth paapjwadajdw
                 //Console.ReadKey(true);
-                Environment.Exit(0); // Exit the game after displaying the win message.
+                //Environment.Exit(0); // Exit the game after displaying the win message.
+                
             }
         }
     }
