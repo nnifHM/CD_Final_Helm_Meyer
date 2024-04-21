@@ -52,6 +52,12 @@ public sealed class InputHandler{
                     engine.UndoMove();
                 }
                 break;
+            case ConsoleKey.S:
+            if (keyInfo.Modifiers == ConsoleModifiers.Control) {
+                Console.WriteLine("Saving States...");
+                engine.SaveProgress();
+            }
+            break;
             default:
                 Console.WriteLine("No action assigned for this key.");
                 break;

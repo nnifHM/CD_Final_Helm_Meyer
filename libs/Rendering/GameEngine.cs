@@ -1,10 +1,11 @@
 ﻿using System.Reflection.Metadata.Ecma335;
-using System.Text.Json.Nodes;
-
 namespace libs;
 
-using System.Security.Cryptography;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using System.IO;
+using System.Security.Cryptography;
 
 public sealed class GameEngine
 {
@@ -42,6 +43,7 @@ public sealed class GameEngine
 
         private GameObject? _focusedObject;
         private List<GameObject> gameObjects;
+        private readonly List<GameObject> _gameObjects;
         private Map map;
         private Stack<List<GameObject>> stateHistory;  // Stack to store map states for undo functionality
 
@@ -64,6 +66,31 @@ public sealed class GameEngine
             stateHistory.Push(gameObjectsCopy);
             playerHistory.Push((_focusedObject.PosX, _focusedObject.PosY));
             
+        }
+
+        public void SaveProgress(){
+            
+            JObject mapObject = new JObject(
+                new JProperty("map", new JObject(
+                new JProperty("width", map.MapWidth),
+                new JProperty("height", map.MapHeight)
+                ))
+            );
+            string json = mapObject.ToString(Newtonsoft.Json.Formatting.Indented);
+
+            string json1 = "{\"gameObjects\":"+JsonConvert.SerializeObject(gameObjects)+"}";
+            //string json1 = "{""map"":{""width"":"+map.MapWidth+",""height"":"+map.MapHeight+"}, ""gameObjects"":";
+            
+            JObject obj1 = JObject.Parse(json);
+            JObject obj2 = JObject.Parse(json1);
+            obj1.Merge(obj2);
+
+            // Convert merged JObject back to JSON string
+            string mergedJson = obj1.ToString();
+
+            FileHandler.saveJson(mergedJson);
+            //File.WriteAllText(@"D:\Schule\FH\4.Semester\CD\Soko\SokobanGame\Save.json", mergedJson);
+
         }
 
         
