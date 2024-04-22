@@ -55,19 +55,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\jonas\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Schule\\FH\\4.Semester\\CD\\Soko\\SokobanGame\\libs\\libs.csproj",
+      "projectUniqueName": "C:\\Users\\jonas\\RiderProjects\\SokobanGame\\libs\\libs.csproj",
       "projectName": "libs",
-      "projectPath": "D:\\Schule\\FH\\4.Semester\\CD\\Soko\\SokobanGame\\libs\\libs.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\Schule\\FH\\4.Semester\\CD\\Soko\\SokobanGame\\libs\\obj\\",
+      "projectPath": "C:\\Users\\jonas\\RiderProjects\\SokobanGame\\libs\\libs.csproj",
+      "packagesPath": "C:\\Users\\jonas\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jonas\\RiderProjects\\SokobanGame\\libs\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\jonas\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"

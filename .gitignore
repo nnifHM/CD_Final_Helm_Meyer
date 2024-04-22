@@ -1,6 +1,5 @@
 **/bin/
 **/obj/
-libs/Handler/FileHandler.cs
 libs/libs.csproj
 game/game.csproj
 game/obj/game.csproj.nuget.dgspec.json
