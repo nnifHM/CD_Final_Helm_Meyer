@@ -1,0 +1,13 @@
+{
+  "dialog":[
+    {
+      "text": "Hello, welcome to Sokoban Game!, Press 'N' for next Dialog"
+    },
+    {
+      "text": "You need to move boxes inside the Goals, but only one box should move inside one hole! Press 'N' for next."
+    },
+    {
+      "text": "You can Save your game by pressing CRTL + S and undo a move with CRTL + Z. Have Fun! Press 'N' to start game!"
+    }
+  ]
+}

@@ -24,6 +24,9 @@ public sealed class GameEngine
             }
         }
 
+        public bool getMainMenuBool(){
+            return isMainMenu;
+        }
         private GameEngine()
         {
             gameObjectFactory = new GameObjectFactory();
@@ -31,6 +34,7 @@ public sealed class GameEngine
             stateHistory = new Stack<List<GameObject>>();
             map = new Map();
             playerHistory = new Stack<(int, int)>();  // Stack to store player positions for undo functionality
+            dialogTexts = new List<string>();
         }
 
         public void Clear() {
@@ -49,6 +53,12 @@ public sealed class GameEngine
 
         private Stack<(int, int)> playerHistory;
 
+        public bool isMainMenu = false;
+        public bool isInDialog = false;
+        private List<string> dialogTexts;
+        private int currentDialog = 0;
+
+
         public void SaveCurrentState()
         {
             List<GameObject> gameObjectsCopy = new List<GameObject>();
@@ -61,7 +71,7 @@ public sealed class GameEngine
             }
             foreach (GameObject gameObject in gameObjects)
             {
-                Console.WriteLine(gameObject.Type + " " + gameObject.PosX + " " + gameObject.PosY + " " + gameObject.CharRepresentation + " " + gameObject.Color);
+                //Console.WriteLine(gameObject.Type + " " + gameObject.PosX + " " + gameObject.PosY + " " + gameObject.CharRepresentation + " " + gameObject.Color);
             }
             stateHistory.Push(gameObjectsCopy);
             playerHistory.Push((_focusedObject.PosX, _focusedObject.PosY));
@@ -147,17 +157,45 @@ public sealed class GameEngine
         {
             Clear();
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-
             dynamic gameData = FileHandler.ReadJson();  // Load game data
-            map.MapWidth = gameData.map.width;
-            map.MapHeight = gameData.map.height;
-
-            foreach (var gameObject in gameData.gameObjects)
-            {
-                AddGameObject(CreateGameObject(gameObject));
+            if(gameData.mainMenu != null){
+                isMainMenu = true;
+            }else{
+                isMainMenu = false;
             }
+            if(gameData.dialog != null){
+                isInDialog = true;
+            }else{
+                isInDialog = false;
+            }
+           if(!isMainMenu){
+                if(isInDialog){
 
-            _focusedObject = gameObjects.OfType<Player>().FirstOrDefault();  // Ensure there is a player
+                    map.MapWidth = 0;
+                    map.MapHeight = 0;
+                    foreach (var dialog in gameData.dialog)
+                    {
+                        string text = dialog.text;
+                        dialogTexts.Add(text);
+                    }
+
+                }else{
+                    map.MapWidth = gameData.map.width;
+                    map.MapHeight = gameData.map.height;
+
+                    foreach (var gameObject in gameData.gameObjects)
+                    {
+                        AddGameObject(CreateGameObject(gameObject));
+                    }
+
+                    _focusedObject = gameObjects.OfType<Player>().FirstOrDefault();  // Ensure there is a player
+                }
+                
+            }else{
+
+                map.MapWidth = 0;
+                map.MapHeight = 0;
+            }
         }
 
         public void SetFocused(GameObject gameObject)
@@ -167,22 +205,48 @@ public sealed class GameEngine
 
         public void Render()
         {
+
+
             Console.Clear();
             
 
-            
-                map.Initialize();
-                PlaceGameObjects();
-            
-            
-            for (int i = 0; i < map.MapHeight; i++)
-            {
-                for (int j = 0; j < map.MapWidth; j++)
-                {
-                    DrawObject(map.Get(i, j));
+            if(isMainMenu){
+
+                Console.WriteLine("press 'n' to start new Game");
+                Console.WriteLine("press 's' to load latest Game Save (if there is one)");
+
+
+
+
+            }else{
+                if(isInDialog){
+                    Console.Clear();
+
+                    //Console.WriteLine("In Dialog");
+
+                    if(dialogTexts != null){
+                        Console.WriteLine(dialogTexts[currentDialog]);
+
+                    }
+
+                }else{
+                    Console.Clear();
+                    map.Initialize();
+                    PlaceGameObjects();
+                
+                
+                    for (int i = 0; i < map.MapHeight; i++)
+                    {
+                        for (int j = 0; j < map.MapWidth; j++)
+                        {
+                            DrawObject(map.Get(i, j));
+                        }
+                        Console.WriteLine();
+                    }
                 }
-                Console.WriteLine();
+                
             }
+            
         }
 
         
@@ -254,5 +318,35 @@ public sealed class GameEngine
         }
 
         return true; // Return true if all goals are covered
+    }
+    public void GoNextLevel(){
+        FileHandler.nextLevel();
+    }
+    public void GoToSavedLevel(){
+        FileHandler.GoToSaved();
+        Setup();
+
+    }
+    public void GoNextDialog(){
+        //if there is next dialog if not load game
+        
+        if(dialogTexts != null){
+            if(dialogTexts.Count - 1 > currentDialog){
+                Console.WriteLine(dialogTexts.Count);
+                currentDialog++;
+            }else{
+                isInDialog = false;
+                GoNextLevel();
+            }
+        }
+        
+    }
+    public void SetDialog(){
+        FileHandler.SetDialog();
+        isInDialog = true;
+        Setup();
+        //isMainMenu = false;
+        
+       
     }
 }

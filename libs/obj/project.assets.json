@@ -55,19 +55,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jonas\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jonas\\RiderProjects\\SokobanGame\\libs\\libs.csproj",
+      "projectUniqueName": "D:\\Schule\\FH\\4.Semester\\CD\\Final_Helm_Meyer\\CD_Final_Helm_Meyer\\libs\\libs.csproj",
       "projectName": "libs",
-      "projectPath": "C:\\Users\\jonas\\RiderProjects\\SokobanGame\\libs\\libs.csproj",
-      "packagesPath": "C:\\Users\\jonas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jonas\\RiderProjects\\SokobanGame\\libs\\obj\\",
+      "projectPath": "D:\\Schule\\FH\\4.Semester\\CD\\Final_Helm_Meyer\\CD_Final_Helm_Meyer\\libs\\libs.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "D:\\Schule\\FH\\4.Semester\\CD\\Final_Helm_Meyer\\CD_Final_Helm_Meyer\\libs\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jonas\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -117,7 +117,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

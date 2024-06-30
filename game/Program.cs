@@ -24,7 +24,10 @@ class Program
             inputHandler.Handle(keyInfo);
 
             // After a move is made
-            if (engine.CheckWinCondition()) {
+            if(!engine.isInDialog){
+
+            
+                if (engine.CheckWinCondition()) {
                 
                
                 Console.Clear();
@@ -36,6 +39,8 @@ class Program
                 //Console.ReadKey(true);
                 //Environment.Exit(0); // Exit the game after displaying the win message.
                 
+                }
+            
             }
         }
     }

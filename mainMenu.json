@@ -1,0 +1,6 @@
+{
+  "mainMenu":{
+    "1": "press 'n' to start new Game",
+    "2": "press 's' to load latest Game Save (if there is one)"
+  }
+}
